@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour ma Sarah 💖</title>
+<link href="https://fonts.googleapis.com" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;text-align:center;color:#fff;background:linear-gradient(rgba(255,192,203,0.3),rgba(255,192,203,0.3)),url("https://images.unsplash.com") center/cover fixed;overflow-x:hidden;min-height:100vh;}
+h1{margin-top:50px;font-family:"Playfair Display",serif;font-size:38px;color:#800020;text-shadow:0 0 10px rgba(255,255,255,0.5);}
+#login-zone{padding:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(5px);margin:20px;border-radius:20px;}
+input{padding:14px;border-radius:30px;border:none;outline:none;width:220px;text-align:center;margin-top:20px;font-size:16px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+button{padding:15px 35px;border:none;border-radius:40px;margin-top:20px;font-size:18px;background:linear-gradient(45deg,#800020,#b03060);color:white;cursor:pointer;box-shadow:0 0 20px rgba(128,0,32,0.4);transition:0.3s;}
+.envelope{font-size:85px;margin-top:40px;cursor:pointer;transition:0.8s;display:inline-block;}
+.envelope.open{transform:scale(0);opacity:0;height:0;}
+.hidden{display:none !important;}
+.letter{display:none;margin:20px auto;max-width:90%;width:600px;background:#fff5f8;color:#4a4a4a;padding:30px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);transform:scaleY(0);transform-origin:top;animation:openLetter 1.2s forwards;text-align:left;line-height:1.6;border: 1px solid #ffd1dc;}
+@keyframes openLetter{to{transform:scaleY(1)}}
+.letter h2{font-family:"Playfair Display";color:#b03060;text-align:center;font-size:24px;margin-top:0;border-bottom:1px solid #ffd1dc;padding-bottom:10px;}
+.letter p{font-size:14px;margin-bottom:15px;text-align:justify;white-space: pre-line;}
+.signature{text-align:right;margin-top:20px;font-size:22px;color:#b03060;font-family:"Playfair Display";font-style:italic;font-weight:bold;}
+.heart{position:fixed;bottom:-20px;font-size:22px;animation:float linear forwards;z-index:10;pointer-events:none;}
+@keyframes float{to{transform:translateY(-120vh) rotate(360deg);opacity:0;}}
+#music-container{margin-top:20px;border-top:1px solid #ffd1dc;padding-top:15px;}
+iframe{border-radius:10px;border:none;}
+</style>
+</head>
+<body>
+
+<div id="login-zone">
+    <h1>Ma Valentine 💖</h1>
+    <p style="color:#800020; font-weight:600;">Entre le mot secret pour ouvrir ton message...</p>
+    <input type="password" id="pass" placeholder="Mot secret">
+    <br>
+    <button onclick="check()">Ouvrir 💕</button>
+</div>
+
+<div id="env" class="envelope hidden" onclick="openLetter()">💌</div>
+
+<div id="letter" class="letter">
+    <h2>À ma Sarah, ma petite princesse,</h2>
+    
+    <p>On dit souvent que les amitiés peuvent être mises de côté, mais on oublie à quel point leur présence est une preuve d'amour inconditionnel. Quand je t'ai connue, les gens doutaient énormément de l'évolution de notre amitié. Mais avec le temps, après les disputes et les doutes, nous avons su imposer notre lien à ces personnes-là.
+
+    Nous avons évolué, nous avons grandi, et aujourd'hui nous sommes devenues ce que nous sommes : deux sœurs, deux âmes sœurs, deux personnes qui s'aiment sans filtre. Je suis fière de toi, de la personne que tu es et de celle que tu deviens ; et je sais que je serai fière de la personne que tu seras demain.
+
+    Tu as traversé tellement d'épreuves, et je sais qu'avec le temps tu guériras. Je suis heureuse que tu aies trouvé certaines choses que ton cœur désirait et que tu aies pu trouver la paix. Il y a encore beaucoup d'épreuves devant nous, et j'espère que le Seigneur saura te garder dans la paix, dans la santé, et surtout qu'il t'aidera à tout surmonter.
+
+    Tu sais à quel point je suis reconnaissante de t'avoir, et je prie Dieu qu'il préserve notre amitié sur Terre et même dans l'au-delà. Je t'aime de tout mon cœur, et rien ni personne ne pourra dire le contraire.
+
+    Malgré la distance, malgré le temps.</p>
+
+    <div class="signature">Avec amour,<br>Amirath 💕</div>
+
+    <div id="music-container"></div>
+</div>
+
+<script>
+const secret = "sarah2026";
+function check(){
+    if(document.getElementById("pass").value.toLowerCase() === secret) {
+        document.getElementById("login-zone").classList.add("hidden");
+        document.getElementById("env").classList.remove("hidden");
+    } else { alert("Mot secret incorrect 💔"); }
+}
+function openLetter(){
+    document.getElementById("env").classList.add("open");
+    setTimeout(() => {
+        document.getElementById("env").classList.add("hidden");
+        document.getElementById("letter").style.display = "block";
+        document.getElementById("music-container").innerHTML = `
+            <p style="font-size:11px; color:#b03060; margin-bottom:10px; text-align:center;">Appuie sur Play pour la musique 🎵</p>
+            <iframe width="100%" height="80" src="https://www.youtube.com" allow="autoplay"></iframe>`;
+    }, 600);
+}
+function heart(){
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = ["💖","💗","❤️","🌸"][Math.floor(Math.random()*4)];
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (3 + Math.random() * 3) + "s";
+    h.style.fontSize = (15 + Math.random() * 15) + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 6000);
+}
+setInterval(heart, 400);
+</script>
+</body>
+  </html>
+  
